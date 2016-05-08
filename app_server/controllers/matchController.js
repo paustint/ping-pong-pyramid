@@ -3,7 +3,7 @@
   
   var _ = require("lodash");
   // var FeatureRequest = require('../models/featureRequest');
-  // var Match = require('../models/match');
+  var Match = require('../models/match');
   // var Player = require('../models/player');
   // var PlayerMatch = require('../models/playerMatch');
 
@@ -35,17 +35,47 @@
   /** Controllers */
   //////////////////////////////////////////// PLAYER ////////////////////////////////////////////
 
-  module.exports.getPlayers = function(req, res) {
-
-    var excl = excludeIds(req) ? {id: 0, _id: 0} : {};
-    Player.find({}, excl, function(err, recordOutput) {
+  module.exports.getMatches = function(req, res) {
+    Match.find({}, function(err, matches) {
       if (err) {
-        sendJson(res, 400, {message: "Error fetching records", error: err});
+        sendJson(res, 400, {error: err, message: 'Error fetching matches'});
       } else {
-        sendJson(res, 201, recordOutput, 'players');
+        sendJson(res, 201, matches, 'matches');
+      }
+    });   
+  }
+  
+  module.exports.getMatchById = function(req, res) {
+    var id = req.params.id;
+    Match.find({_id: id}, function(err, match) {
+      if (err) {
+        sendJson(res, 400, {error: err, message: 'Error fetching match'});
+      } else {
+        sendJson(res, 201, match);
       }
     });
-  };
+  }
+
+  module.exports.saveMatch = function(req, res) {
+    var newMatch = {};
+    newMatch.winner = req.params.name;
+    newMatch.loser = req.params.email;
+    newMatch.winnerScore = req.params.screenName;
+    newMatch.loserScore = req.params.password;
+    newMatch.winnerNewLocation = req.params.winnerNewLocation;
+    newMatch.winnerPriorLocation = req.params.winnerPriorLocation;
+    newMatch.loserPriorLocation = req.params.loserPriorLocation;
+    newMatch.loserNewLocation = req.params.loserNewLocation;
+    
+    var match = new Match(newMatch);
+    
+    match.save(function(err, match) {
+      if (err) {
+        sendJson(res, 400, {error: err, message: 'Error saving match'});
+      } else {
+        sendJson(res, 201, match);
+      }
+    });
+  }
 
 })();
-

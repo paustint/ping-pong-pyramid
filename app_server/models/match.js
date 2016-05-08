@@ -6,12 +6,14 @@
 
   var matchSchema = new Schema({
     id: { type: String },
-    winner: { type: ObjectId },
-    loser: { type: ObjectId },
-    winnerNewLocation: { type: String },
-    winnerPriorLocation: { type: String },
-    loserPriorLocation: { type: String },
-    loserNewLocation: { type: String },
+    winner: { type: Schema.Types.ObjectId},
+    loser: { type: Schema.Types.ObjectId },
+    winnerScore: { type: Number },
+    loserScore: { type: Number },
+    winnerNewTier: { type: Number },
+    winnerPriorTier: { type: Number },
+    loserPriorTier: { type: Number },
+    loserNewTier: { type: Number },
     created: { type: Date, default: Date.now },
     updated: { type: Date, default: Date.now }
   });

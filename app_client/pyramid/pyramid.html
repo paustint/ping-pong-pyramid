@@ -1,5 +1,5 @@
 
-<div class="row" ng-repeat="tier in vm.tiers">
+<div class="row tier" ng-repeat="tier in vm.tiers">
     <div ng-class="['col-xs-offset-'+{{tier.offset}}, 'col-xs-'+{{12-tier.offset}}]">
     <ul dnd-list="tier.players" 
         dnd-horizontal-list="true" 
@@ -18,7 +18,7 @@
     </div>
 </div>
 
-<hr>
+<br>
 
 <ul class="list-group">
     <li class="list-group-item" ng-repeat="p in vm.playerMovesHistory">

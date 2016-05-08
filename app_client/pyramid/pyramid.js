@@ -115,43 +115,7 @@
   
   // Helper function to set tier and position on all players
   function setPlayerTierAndPosition(tiers) {
-  //   for (var i = 0; i < tiers.length; i++) {
-  //     var t = tiers[i];
-
-  //     var offset;
-  //     var max;
-  //     var allowedDrag = [];
-  //     if (i = 0) {
-  //       offset = 5;
-  //       max = 1;
-  //       allowedDrag.push('1');
-  //     }else if (i = 1) {
-  //       offset = 4;
-  //       max = 2;
-  //       allowedDrag.push(['0','2']);
-  //     }else if (i = 2) {
-  //       offset = 3;
-  //       max = 4;
-  //       allowedDrag.push(['1', '3']);
-  //     } else {
-  //       offset = 2;
-  //       max = 100;
-  //       allowedDrag.push('2');
-  //     }
-      
-  //     t.label = 'Tier ' + i;
-  //     t.allowedDrag = allowedDrag;
-  //     t.tier = i.toString();
-  //     t.order = i;
-  //     t.max = max;
-  //     t.offset = offset;
-  //     for (var k = 0; k < t.players.length; k++) {
-  //       var p = t.players[k];
-  //       p.tier = i;
-  //       p.position = k;
-  //       p.class = 'label label-default';
-  //     }
-  //   }
+    
   }
 
   function getTiers() {
@@ -248,13 +212,13 @@
       tier: '3',
       order: 3,
       max: 8,
-      offset: 2,
+      offset: 1,
       players: [
           {
             id: '1',
             name: 'p11',
             screenName: 'p1',
-            tier: 2,
+            tier: 3,
             position: 0,
             class: 'label label-default'
           },
@@ -262,7 +226,7 @@
             id: '2',
             name: 'p21',
             screenName: 'p2',
-            tier: 2,
+            tier: 3,
             position: 1,
             class: 'label label-default'
           },
@@ -270,7 +234,7 @@
             id: '3',
             name: 'p31',
             screenName: 'p3',
-            tier: 2,
+            tier: 3,
             position: 2,
             class: 'label label-default'
           },
@@ -278,7 +242,7 @@
             id: '4',
             name: 'p41',
             screenName: 'p4',
-            tier: 2,
+            tier: 3,
             position: 3,
             class: 'label label-default'
           },
@@ -286,64 +250,64 @@
             id: '1',
             name: 'p11',
             screenName: 'p1',
-            tier: 2,
-            position: 0,
+            tier: 3,
+            position: 4,
             class: 'label label-default'
           },
           {
             id: '2',
             name: 'p21',
             screenName: 'p2',
-            tier: 2,
-            position: 1,
+            tier: 3,
+            position: 5,
             class: 'label label-default'
           },
           {
             id: '3',
             name: 'p31',
             screenName: 'p3',
-            tier: 2,
-            position: 2,
+            tier: 3,
+            position: 6,
             class: 'label label-default'
           },
           {
             id: '4',
             name: 'p41',
             screenName: 'p4',
-            tier: 2,
-            position: 3,
+            tier: 3,
+            position: 7,
             class: 'label label-default'
           },
           {
             id: '1',
             name: 'p11',
             screenName: 'p1',
-            tier: 2,
-            position: 0,
+            tier: 3,
+            position: 8,
             class: 'label label-default'
           },
           {
             id: '2',
             name: 'p21',
             screenName: 'p2',
-            tier: 2,
-            position: 1,
+            tier: 3,
+            position: 9,
             class: 'label label-default'
           },
           {
             id: '3',
             name: 'p31',
             screenName: 'p3',
-            tier: 2,
-            position: 2,
+            tier: 3,
+            position: 10,
             class: 'label label-default'
           },
           {
             id: '4',
             name: 'p41',
             screenName: 'p4',
-            tier: 2,
-            position: 3,
+            tier: 3,
+            position: 11,
             class: 'label label-default'
           }
         ]

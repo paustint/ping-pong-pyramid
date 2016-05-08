@@ -4,7 +4,7 @@
   var _ = require("lodash");
   // var FeatureRequest = require('../models/featureRequest');
   // var Match = require('../models/match');
-  // var Player = require('../models/player');
+  var Pyramid = require('../models/pyramid');
   // var PlayerMatch = require('../models/playerMatch');
 
   /**
@@ -35,17 +35,52 @@
   /** Controllers */
   //////////////////////////////////////////// PLAYER ////////////////////////////////////////////
 
-  module.exports.getPlayers = function(req, res) {
-
-    var excl = excludeIds(req) ? {id: 0, _id: 0} : {};
-    Player.find({}, excl, function(err, recordOutput) {
+  module.exports.getPyramid = function(req, res) {
+    Pyramid.findOne({}, {}, {sort: {'created': -1}}, function(err, pyramid) {
       if (err) {
-        sendJson(res, 400, {message: "Error fetching records", error: err});
+        sendJson(res, 400, {error: err, message: 'Error fetching pyramid'});
       } else {
-        sendJson(res, 201, recordOutput, 'players');
+        sendJson(res, 201, pyramid);
       }
     });
-  };
+  }
+  
+  module.exports.getPyramidById = function(req, res) {
+    var id = req.body.id;
+    
+    Pyramid.find({_id: id}, function(err, pyramid) {
+      if (err) {
+        sendJson(res, 400, {error: err, message: 'Error fetching pyramid'});
+      } else {
+        sendJson(res, 201, pyramid);
+      }
+    });
+  }
+
+  module.exports.getPyramids = function(req, res) {
+    Pyramid.find({}, function(err, pyramids) {
+      if (err) {
+        sendJson(res, 400, {error: err, message: 'Error fetching pyramids'});
+      } else {
+        sendJson(res, 201, pyramids, 'pyramids');
+      }
+    });
+  }
+  
+  module.exports.savePyramid = function(req, res) {
+    var newPyramid = {};
+    newPyramid.pyramid = req.params.pyramid;
+    
+    var pyramid = new Pyramid(newPyramid);
+    
+    pyramid.save(function(err, pyramid) {
+      if (err) {
+        sendJson(res, 400, {error: err, message: 'Error saving pyramid'});
+      } else {
+        sendJson(res, 201, pyramid);
+      }
+    });
+  }
 
 })();
 

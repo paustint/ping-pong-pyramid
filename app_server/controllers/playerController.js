@@ -4,7 +4,7 @@
   var _ = require("lodash");
   // var FeatureRequest = require('../models/featureRequest');
   // var Match = require('../models/match');
-  // var Player = require('../models/player');
+  var Player = require('../models/player');
   // var PlayerMatch = require('../models/playerMatch');
 
   /**
@@ -34,18 +34,49 @@
 
   /** Controllers */
   //////////////////////////////////////////// PLAYER ////////////////////////////////////////////
-
+  
   module.exports.getPlayers = function(req, res) {
-
-    var excl = excludeIds(req) ? {id: 0, _id: 0} : {};
-    Player.find({}, excl, function(err, recordOutput) {
+    
+    Player.find({}, function(err, players) {
       if (err) {
-        sendJson(res, 400, {message: "Error fetching records", error: err});
+        sendJson(res, 400, {error: err, message: 'Error fetching players'});
       } else {
-        sendJson(res, 201, recordOutput, 'players');
+        sendJson(res, 201, players, 'players');
       }
     });
-  };
+    
+  }
+  
+  module.exports.getPlayerById = function(req, res) {
+    var id = req.params.id;
+    Player.find({_id: id}, function(err, player) {
+      if (err) {
+        sendJson(res, 400, {error: err, message: 'Error fetching player'});
+      } else {
+        sendJson(res, 201, player);
+      }
+    });
+  }
+
+  module.exports.savePlayer = function(req, res) {
+    var newPlayer = {};
+    newPlayer.name = req.params.name;
+    newPlayer.email = req.params.email;
+    newPlayer.screenName = req.params.screenName;
+    newPlayer.password = req.params.password;
+    
+    var player = new Player(newPlayer);
+    
+    player.save(function(err, player) {
+      if (err) {
+        sendJson(res, 400, {error: err, message: 'Error saving player'});
+      } else {
+        sendJson(res, 201, player);
+      }
+    });
+    
+  }
+
 
 })();
 
